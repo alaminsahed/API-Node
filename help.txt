@@ -1,0 +1,5 @@
+node file reacts as server and html file as client.
+
+we can fetch response to display data in the website from method:POST.
+
+Method post have to 3 part method,body,headers.
