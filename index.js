@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 app.use(cors());
+app.use(bodyParser.json())
 
 const user = ['Asad','Puspuita','shakil','sony'];
 
@@ -13,10 +15,6 @@ app.get('/',(req,res)=>{
     res.send ("Thank you");
 }); //add rootcall after coma
 
-app.get('/fruits/banana',(req,res)=>{
-    res.send({fruit:'banana',quantity:1000, price:10000})
-})
-
 app.get('/user/:id',(req,res)=>{   //:id determines the dynamic value according to user arry
     const id = req.params.id;
     // console.log(id);  id is the parameter of request
@@ -24,4 +22,11 @@ app.get('/user/:id',(req,res)=>{   //:id determines the dynamic value according 
     // res.send(name);  name output as simple string
     res.send ({id,name}); // output as a json and object
 })
+
+//post [in large file page are different]
+
+app.post('/addUser',(req,res)=>{
+    console.log(req.body);
+})
+
 app.listen(3000, ()=>console.log('Listenig to port 3000'));
