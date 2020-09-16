@@ -1,0 +1,13 @@
+Introducing postman, body-parser error solution.
+
+Content:
+
+How to send data from postman to web console
+
+postman app:
+
+install the postman app-> add new-> change the dropdown menu to Post-> put the link which is used in nide API (here 'http://localhost:3000/addUser')-> click send button -> data will show in the node API console as a result of console.log(req.body) in post event.
+
+body-parser:
+
+install npm-> add two command in the node file (const bodyParser = require('body-parser');), (app.use(bodyParser.json())).
