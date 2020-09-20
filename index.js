@@ -11,14 +11,30 @@ app.use(bodyParser.json());
 const dbUser = 'dbUser';
 const pass = '1viB7L9dgwvDSXcx';
 const uri = "mongodb+srv://dbUser:1viB7L9dgwvDSXcx@cluster0.m8yu3.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+let client = new MongoClient(uri, { useNewUrlParser: true });
 
 const user = ['Asad','Puspuita','shakil','sony'];
 
 
-app.get('/',(req,res)=>{
-    res.send ("Thank you");
-}); //add rootcall after coma
+app.get('/product',(req,res)=>{
+    client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+        const collection = client.db("onlineshopping").collection("products");
+        collection.find().toArray((err,document)=>{
+           if(err)
+           {
+               console.log(err);
+           }
+           else{
+              res.send(document);
+           }
+           
+        })
+       
+        client.close();
+      });
+   
+}); 
 
 app.get('/fruits/banana',(req,res)=>{
     res.send({fruit:'banana',quantity:1000, price:10000})
@@ -35,6 +51,7 @@ app.get('/user/:id',(req,res)=>{   //:id determines the dynamic value according 
 //post
 app.post('/addProduct',(req,res)=>{
     const product = req.body;
+    client = new MongoClient(uri, { useNewUrlParser: true });
     console.log(product);
       //mongodb connection
         client.connect(err => {
