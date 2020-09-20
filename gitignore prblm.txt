@@ -1,0 +1,2 @@
+If gitignor is not working then put the following command in the terminal
+"git rm -r --cached ."
