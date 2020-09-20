@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const MongoClient = require('mongodb').MongoClient;
+require('dotenv').config()
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -8,9 +9,11 @@ const bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.json());
 
-const dbUser = 'dbUser';
-const pass = '1viB7L9dgwvDSXcx';
-const uri = "mongodb+srv://dbUser:1viB7L9dgwvDSXcx@cluster0.m8yu3.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const dbUser = process.env.DB_USER;
+const pass = process.env.DB_PASS;
+const uri = process.env.DB_PATH;
+
+
 let client = new MongoClient(uri, { useNewUrlParser: true });
 
 const user = ['Asad','Puspuita','shakil','sony'];
@@ -73,6 +76,6 @@ app.post('/addProduct',(req,res)=>{
     });
     
 
+const port = process.env.PORT || 3000;
 
-
-app.listen(3000, ()=>console.log('Listenig to port 3000'));
+app.listen({port}, ()=>console.log('Listenig to port 3000'));
