@@ -1,0 +1,17 @@
+#error solution
+
+1.mongo error - lost the connection when reload
+
+sol: copy " client = new MongoClient(uri, { useNewUrlParser: true });" before all "client.connect".
+
+
+2. node event.js: 147 trow error, ERROR: port 3000 already used.
+
+sol: Open a CMD window in Administrator mode by navigating to Start > Run > type cmd > right-click Command Prompt, then select Run as administrator.
+
+netstat -ano|findstr "PID :3000" ->enter
+show the PID number of the port 3000, then put next command
+
+taskkill /pid 18264 /f  (own pid number in pid section)
+
+then go to the vs code terminal and npm start
